@@ -1,5 +1,8 @@
+/* eslint-disable no-import-assign */
 import leaderBoardReducer from './leaderboardReducer';
 import ActionType from './ActionType';
+import { asyncFetchAllLeaderBoard } from './action';
+import { getAllLeaderBoard } from '../../utils/api';
 
 /**
  * Test Scenario
@@ -52,5 +55,51 @@ describe('LeaderBoard reducer', () => {
     // assert
     const shouldReturned = actionCreator.payload.users.sort((a, b) => b.score - a.score);
     expect(nextState).toEqual(shouldReturned);
+  });
+});
+
+const fakeErrorMessage = new Error('Ups Something went wrong');
+const obj = {};
+const fakeUsersResonse = [
+  {
+    userId: 'akdjksda',
+    name: 'Ripan',
+    score: 30,
+  },
+  {
+    userId: 'akdjksda',
+    name: 'Ripan Renaldi',
+    score: 40,
+  },
+  {
+    userId: 'akdjksda',
+    name: 'Ripan test',
+    score: 60,
+  },
+];
+
+describe('Thunk Function asyncFetchAllLeaderboard', () => {
+  beforeAll(() => {
+    // backup original implementation
+    obj._getAllLeaderboard = getAllLeaderBoard;
+  });
+
+  it('should dispatching data correctly', async () => {
+    // arrange
+    getAllLeaderBoard = () => Promise.resolve(fakeUsersResonse);
+
+    // mock dispatch
+    const dispatch = jest.fn();
+
+    // action
+    await asyncFetchAllLeaderBoard()(dispatch);
+
+    // assert
+    expect(dispatch).toHaveBeenCalled();
+  });
+
+  afterAll(() => {
+    getAllLeaderBoard = obj._getAllLeaderboard;
+    delete obj._getAllLeaderboard;
   });
 });

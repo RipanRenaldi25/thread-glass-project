@@ -4,7 +4,6 @@ import ActionType from './ActionType';
 const initialState = {
   users: {},
   userDetail: {},
-  owner: {},
 };
 
 function usersThreadReducer(state = initialState, action = {}) {
