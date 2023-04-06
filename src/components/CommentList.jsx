@@ -4,7 +4,6 @@ import React from 'react';
 import CommentItem from './CommentItem';
 
 function CommentList({ comments }) {
-  console.log(comments);
   if (comments.length === 0) {
     return null;
   }

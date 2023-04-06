@@ -63,7 +63,7 @@ export const asyncAddCommentToThread = ({ threadId, content }) => async (dispatc
     const { data: { comment } } = await createComment({ threadId, comment: content });
     dispatch(addCommentToThreadActionCreator(comment));
   } catch ({ response: { data: { message } } }) {
-    console.log(message);
+    alert(message);
   }
   dispatch(hideLoading());
 };

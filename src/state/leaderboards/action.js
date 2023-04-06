@@ -15,7 +15,7 @@ export const asyncFetchAllLeaderBoard = () => async (dispatch) => {
     const { data: { leaderboards } } = await getAllLeaderBoard();
     dispatch(putAllLeaderBoardActionCreator(leaderboards));
   } catch ({ response: { data: { message } } }) {
-    console.log(message);
+    alert(message);
   }
   dispatch(hideLoading());
 };
