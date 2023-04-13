@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Latest Code
-        uses: action/checkout@v2
+        uses: actions/checkout@v2
       - name: use node js ${{ matrix.node-version }}
-        uses: action/setup-node@v2
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install and test
