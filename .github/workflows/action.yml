@@ -1,0 +1,21 @@
+---
+name: Continus Integration
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  automation-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v2
+      - name: Use Node JS ${{ matrix.node-version }}
+        uses: actions/setup-node
+        with:
+          node-version: ${{ matrix.node-verios }}
+      - name: npm install and test
+        run: |
+          npm install
+          npm run ci:test
+...
