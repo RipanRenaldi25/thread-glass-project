@@ -34,6 +34,6 @@ describe('User Profile Reducer', () => {
     // action
     const nextState = userProfileReducer(initialState, actionCreator);
     // assert
-    expect(nextState).toEqual(actionCreator.payload.profilee);
+    expect(nextState).toEqual(actionCreator.payload.profile);
   });
 });
