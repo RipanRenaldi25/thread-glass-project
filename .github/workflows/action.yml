@@ -1,19 +1,21 @@
-name: CI
+---
+name: Continus Integration
 on:
   pull_request:
     branches:
       - main
 jobs:
-  automation-test-job:
+  automation-test-jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Latest Code
         uses: actions/checkout@v2
-      - name: use node js ${{ matrix.node-version }}
+      - name: use nodejs ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install and test
+      - name: npm install and npm test
         run: |
           npm install
           npm run ci:test
+...
